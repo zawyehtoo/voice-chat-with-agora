@@ -186,7 +186,7 @@ let handleUserLeft = async (user) => {
 }
 
 let micStatusHtml = (userRtcUid, muted) => `
-    <img class="mic-status mic-status-${userRtcUid}" src="icons/${muted == 'true' ? 'mic-off' : 'mic'}.svg" style="background-color: ${muted == 'true' ? 'indianred' : 'ivory'};"/>`
+    <img class="mic-status mic-status-${userRtcUid}" src="/icons/${muted == 'true' ? 'mic-off' : 'mic'}.svg" style="background-color: ${muted == 'true' ? 'indianred' : 'ivory'};"/>`
 
 let handleMemberJoined = async (MemberId) => {
 
@@ -229,7 +229,7 @@ let getChannelMembers = async () => {
 let setMicStatusIcon = (uid, muted) => {
   let icons = document.getElementsByClassName(`mic-status-${uid}`)
   for (let i = 0; icons.length > i; i++){
-    icons[i].src = muted ? 'icons/mic-off.svg' : 'icons/mic.svg'
+    icons[i].src = muted ? '/icons/mic-off.svg' : '/icons/mic.svg'
     icons[i].style.backgroundColor = muted ? 'indianred' : 'ivory'
   }
 }
@@ -244,11 +244,11 @@ let handleChannelMessage = async (message) => {
 
 const toggleMic = async (e) => {
   if (micMuted){
-    e.target.src = 'icons/mic.svg'
+    e.target.src = '/icons/mic.svg'
     e.target.style.backgroundColor = 'ivory'
     micMuted = false
   }else{
-    e.target.src = 'icons/mic-off.svg'
+    e.target.src = '/icons/mic-off.svg'
     e.target.style.backgroundColor = 'indianred'
     
     micMuted = true
@@ -285,14 +285,14 @@ const toggleCamera = async (e) => {
       avatarImg.style.display = 'none'
     }
 
-    e.target.src = 'icons/video.svg'
+    e.target.src = '/icons/video.svg'
     e.target.style.backgroundColor = 'ivory'
     cameraOff = false
   }else{
     await localVideoTrack.setEnabled(false)
     hideRemoteVideo(rtcUid)
 
-    e.target.src = 'icons/video-off.svg'
+    e.target.src = '/icons/video-off.svg'
     e.target.style.backgroundColor = 'indianred'
     cameraOff = true
   }
@@ -311,7 +311,7 @@ let stopScreenShare = async () => {
   screenSharing = false
 
   let screenIcon = document.getElementById('screen-icon')
-  screenIcon.src = 'icons/screen-share-off.svg'
+  screenIcon.src = '/icons/screen-share-off.svg'
   screenIcon.style.backgroundColor = 'indianred'
 
   if (cameraWasOnBeforeShare && localVideoTrack){
@@ -364,7 +364,7 @@ const toggleScreenShare = async (e) => {
   // fires when the user clicks the browser's own "Stop sharing" control
   localScreenTrack.on('track-ended', stopScreenShare)
 
-  e.target.src = 'icons/screen-share.svg'
+  e.target.src = '/icons/screen-share.svg'
   e.target.style.backgroundColor = 'ivory'
   screenSharing = true
 }
@@ -409,7 +409,7 @@ let leaveRoom = async () => {
   }
   cameraOff = true
   let cameraIcon = document.getElementById('camera-icon')
-  cameraIcon.src = 'icons/video-off.svg'
+  cameraIcon.src = '/icons/video-off.svg'
   cameraIcon.style.backgroundColor = 'indianred'
 
   if (localScreenTrack){
@@ -419,7 +419,7 @@ let leaveRoom = async () => {
   }
   screenSharing = false
   let screenIcon = document.getElementById('screen-icon')
-  screenIcon.src = 'icons/screen-share-off.svg'
+  screenIcon.src = '/icons/screen-share-off.svg'
   screenIcon.style.backgroundColor = 'indianred'
 
   rtcClient.unpublish()
