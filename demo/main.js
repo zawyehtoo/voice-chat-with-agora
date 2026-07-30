@@ -2,7 +2,7 @@ import './style.css'
 import AgoraRTC from "agora-rtc-sdk-ng"
 import AgoraRTM from "agora-rtm-sdk"
 
-import appid from '../appId.js'
+const appid = import.meta.env.VITE_APP_ID
 
 
 const token = null
